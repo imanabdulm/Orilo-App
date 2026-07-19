@@ -1,0 +1,8 @@
+.build/
+dist/
+release/
+.swiftpm/
+.DS_Store
+.vscode/
+.codex/
+Config/AppIcon.iconset/

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- App Sandbox (required for Mac App Store) -->
+    <key>com.apple.security.app-sandbox</key>
+    <true/>
+
+    <!-- Accessibility permission for browser tab detection -->
+    <!-- NOTE: This requires an exception from Apple when submitting to Mac App Store.
+         The NSAccessibilityUsageDescription in Info.plist explains the usage. -->
+    <key>com.apple.security.temporary-exception.mach-lookup.global-name</key>
+    <array>
+        <string>com.apple.accessibility.AXBackgroundActivity</string>
+    </array>
+
+    <!-- Network access for StoreKit purchases -->
+    <key>com.apple.security.network.client</key>
+    <true/>
+
+    <!-- User notifications -->
+    <key>com.apple.security.app-sandbox.exceptions</key>
+    <false/>
+</dict>
+</plist>

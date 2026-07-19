@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>CFBundleExecutable</key>
+  <string>Orilo</string>
+  <key>CFBundleIdentifier</key>
+  <string>com.orilo.app</string>
+  <key>CFBundleName</key>
+  <string>Orilo</string>
+  <key>CFBundleDisplayName</key>
+  <string>Orilo</string>
+  <key>CFBundleIconFile</key>
+  <string>AppIcon</string>
+  <key>CFBundlePackageType</key>
+  <string>APPL</string>
+  <key>CFBundleShortVersionString</key>
+  <string>1.0.0</string>
+  <key>CFBundleVersion</key>
+  <string>1</string>
+  <key>LSMinimumSystemVersion</key>
+  <string>14.0</string>
+  <key>LSUIElement</key>
+  <true/>
+  <key>NSPrincipalClass</key>
+  <string>NSApplication</string>
+
+  <!-- Privacy descriptions (required for App Store) -->
+  <key>NSAccessibilityUsageDescription</key>
+  <string>Orilo uses Accessibility to detect when distraction websites (like YouTube) are open inside your browser during a focus session. No browsing data is stored or transmitted.</string>
+
+  <!-- Human-readable copyright -->
+  <key>NSHumanReadableCopyright</key>
+  <string>Copyright © 2025 Orilo. All rights reserved.</string>
+</dict>
+</plist>
