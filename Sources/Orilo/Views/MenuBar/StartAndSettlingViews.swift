@@ -274,9 +274,31 @@ private struct DurationPickerView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Duration")
-                .font(.caption.weight(.medium))
-                .foregroundStyle(.secondary)
+            HStack(alignment: .center) {
+                Text("Duration")
+                    .font(.caption.weight(.medium))
+                    .foregroundStyle(.secondary)
+
+                Spacer()
+
+                if viewModel.preferences.pomodoroEnabled {
+                    HStack(spacing: 5) {
+                        Image(systemName: "cup.and.saucer.fill")
+                            .font(.system(size: 9, weight: .semibold))
+                        Text("Auto break: \(viewModel.preferences.breakDurationMinutes)m")
+                            .font(.caption2.weight(.medium))
+                    }
+                    .foregroundStyle(.secondary)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 3.5)
+                    .background(Color.secondary.opacity(0.07), in: Capsule())
+                    .overlay {
+                        Capsule()
+                            .stroke(Color.secondary.opacity(0.10), lineWidth: 1)
+                    }
+                    .help("Auto break: \(viewModel.preferences.breakDurationMinutes)m, Long \(viewModel.preferences.longBreakDurationMinutes)m after \(viewModel.preferences.sessionsBeforeLongBreak) sessions")
+                }
+            }
 
             HStack(spacing: 8) {
                 ForEach(viewModel.durationPresets, id: \.self) { minutes in
@@ -312,26 +334,6 @@ private struct DurationPickerView: View {
                 .overlay {
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(Color.secondary.opacity(0.11), lineWidth: 1)
-                }
-            }
-
-            if viewModel.preferences.pomodoroEnabled {
-                HStack(spacing: 6) {
-                    Image(systemName: "cup.and.saucer.fill")
-                        .font(.system(size: 10, weight: .semibold))
-                    Text("Auto break: \(viewModel.preferences.breakDurationMinutes)m")
-                    Text("Long \(viewModel.preferences.longBreakDurationMinutes)m after \(viewModel.preferences.sessionsBeforeLongBreak)")
-                        .foregroundStyle(.tertiary)
-                }
-                .font(.caption2.weight(.medium))
-                .foregroundStyle(.secondary)
-                .lineLimit(1)
-                .padding(.horizontal, 9)
-                .padding(.vertical, 5)
-                .background(Color.secondary.opacity(0.055), in: Capsule())
-                .overlay {
-                    Capsule()
-                        .stroke(Color.secondary.opacity(0.10), lineWidth: 1)
                 }
             }
         }
