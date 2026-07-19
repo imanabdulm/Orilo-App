@@ -10,6 +10,12 @@
 
 ---
 
+## 🎬 Application Demo
+
+<video src="docs/assets/demo.mp4" width="100%" controls></video>
+
+---
+
 ## ✨ Features
 
 - **🎯 Focus Ritual & Settling Mode:** Intention-driven focus sessions with customizable durations, pre-session settling countdown, and clean progress rings.
