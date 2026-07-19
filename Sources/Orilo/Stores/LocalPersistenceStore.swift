@@ -20,19 +20,7 @@ struct LocalPersistenceStore {
         } else {
             let supportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
                 ?? fileManager.homeDirectoryForCurrentUser.appending(path: "Library/Application Support")
-            let oriloURL = supportURL.appending(path: "Orilo", directoryHint: .isDirectory)
-            let legacyLunavoURL = supportURL.appending(path: "Lunavo", directoryHint: .isDirectory)
-            let legacyOriloURL = supportURL.appending(path: "Orilo", directoryHint: .isDirectory)
-
-            if !fileManager.fileExists(atPath: oriloURL.path) {
-                if fileManager.fileExists(atPath: legacyLunavoURL.path) {
-                    try? fileManager.copyItem(at: legacyLunavoURL, to: oriloURL)
-                } else if fileManager.fileExists(atPath: legacyOriloURL.path) {
-                    try? fileManager.copyItem(at: legacyOriloURL, to: oriloURL)
-                }
-            }
-
-            self.baseURL = oriloURL
+            self.baseURL = supportURL.appending(path: "Orilo", directoryHint: .isDirectory)
         }
 
         recapsURL = self.baseURL.appending(path: "SessionRecaps.json")

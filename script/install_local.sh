@@ -7,7 +7,7 @@ INSTALL_DIR="${ORILO_INSTALL_DIR:-/Applications}"
 DIST_DIR="${ORILO_DIST_DIR:-/private/tmp/orilo-install}"
 APP_BUNDLE="$DIST_DIR/$APP_NAME.app"
 TARGET_APP="$INSTALL_DIR/$APP_NAME.app"
-OLD_TARGET_APPS=("$INSTALL_DIR/Lunavo.app")
+OLD_TARGET_APPS=()
 RUN_AFTER_INSTALL=0
 
 usage() {
