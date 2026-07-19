@@ -12,7 +12,9 @@
 
 ## 🎬 Application Demo
 
-https://raw.githubusercontent.com/imanabdulm/Orilo-App/main/docs/assets/demo.mp4
+https://github.com/user-attachments/assets/e15326e0-65d2-4802-a681-9f59f95987cc
+
+
 
 ---
 
