@@ -126,17 +126,6 @@ private struct DistractionOverlayView: View {
             intentionChip
 
             buttons
-
-            if let onSnooze {
-                Button {
-                    onSnooze()
-                } label: {
-                    Label("Need 3m for work pass", systemImage: "clock.arrow.circlepath")
-                        .font(.caption.weight(.medium))
-                        .foregroundStyle(.secondary)
-                }
-                .buttonStyle(.plain)
-            }
         }
         .padding(.horizontal, 30)
         .padding(.top, 30)
