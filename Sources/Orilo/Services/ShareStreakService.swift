@@ -21,9 +21,12 @@ struct ShareStreakService {
         guard let image = renderer.nsImage else { return }
 
         let picker = NSSharingServicePicker(items: [image])
-        if let window = NSApp.keyWindow {
-            picker.show(relativeTo: .zero, of: window.contentView!, preferredEdge: .minY)
-        }
+        let targetWindow = NSApp.keyWindow ?? NSApp.mainWindow ?? NSApp.windows.first(where: { $0.isVisible })
+        guard let window = targetWindow, let contentView = window.contentView else { return }
+
+        let bounds = contentView.bounds
+        let centerRect = NSRect(x: bounds.midX - 50, y: bounds.midY - 50, width: 100, height: 100)
+        picker.show(relativeTo: centerRect, of: contentView, preferredEdge: .minY)
     }
 }
 
@@ -90,7 +93,7 @@ private struct StreakCard: View {
                     CardStatRow(label: "Sessions", value: "\(data.totalSessions)")
                     CardStatRow(label: "Focus time", value: "\(data.focusedMinutes)m")
 
-                    if let intention = data.topIntention {
+                    if let intention = data.topIntention, !intention.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                         VStack(alignment: .trailing, spacing: 4) {
                             Text("Working on")
                                 .font(.system(size: 13, weight: .medium))
