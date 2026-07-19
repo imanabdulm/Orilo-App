@@ -112,6 +112,19 @@ private struct GeneralPreferencesPane: View {
                 .labelsHidden()
                 .frame(width: 210)
             }
+
+            Divider()
+
+            PreferenceRow(
+                title: "Support Orilo",
+                detail: "Help fund Apple Developer Program notarization ($99/year)."
+            ) {
+                Link(destination: URL(string: "https://ko-fi.com/imanabdul")!) {
+                    Label("Support on Ko-fi", systemImage: "cup.and.saucer.fill")
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(Color(red: 255/255, green: 94/255, blue: 91/255))
+            }
         }
     }
 }
