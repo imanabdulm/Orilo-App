@@ -296,12 +296,12 @@ private struct DurationPickerView: View {
                     viewModel.persistPreferences()
                 } label: {
                     HStack(spacing: 4) {
-                        Image(systemName: "cup.and.saucer.fill")
-                            .font(.system(size: 10, weight: .medium))
+                        Text("☕")
+                            .font(.system(size: 11))
                         Text(viewModel.preferences.pomodoroEnabled ? "\(viewModel.preferences.breakDurationMinutes)m break" : "Break")
                     }
                 }
-                .buttonStyle(DurationButtonStyle(isSelected: viewModel.preferences.pomodoroEnabled))
+                .buttonStyle(BreakButtonStyle(isActive: viewModel.preferences.pomodoroEnabled))
                 .help(viewModel.preferences.pomodoroEnabled ? "Auto break enabled (\(viewModel.preferences.breakDurationMinutes)m)" : "Enable auto break")
             }
 
@@ -394,6 +394,31 @@ struct CapsuleStepper: View {
                 .stroke(Color.secondary.opacity(0.12), lineWidth: 1)
         }
         .animation(.smooth(duration: 0.16), value: value)
+    }
+}
+
+private struct BreakButtonStyle: ButtonStyle {
+    let isActive: Bool
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.callout.weight(isActive ? .semibold : .regular))
+            .padding(.horizontal, 9)
+            .padding(.vertical, 6)
+            .foregroundStyle(isActive ? Color.green : Color.primary)
+            .background(
+                isActive
+                    ? Color.green.opacity(configuration.isPressed ? 0.24 : 0.16)
+                    : Color.secondary.opacity(configuration.isPressed ? 0.12 : 0.06),
+                in: RoundedRectangle(cornerRadius: 7)
+            )
+            .overlay {
+                if isActive {
+                    RoundedRectangle(cornerRadius: 7)
+                        .stroke(Color.green.opacity(0.35), lineWidth: 1)
+                }
+            }
+            .animation(.smooth(duration: 0.16), value: isActive)
     }
 }
 
