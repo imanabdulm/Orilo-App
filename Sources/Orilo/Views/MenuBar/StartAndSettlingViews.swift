@@ -274,33 +274,11 @@ private struct DurationPickerView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            HStack(alignment: .center) {
-                Text("Duration")
-                    .font(.caption.weight(.medium))
-                    .foregroundStyle(.secondary)
+            Text("Duration")
+                .font(.caption.weight(.medium))
+                .foregroundStyle(.secondary)
 
-                Spacer()
-
-                if viewModel.preferences.pomodoroEnabled {
-                    HStack(spacing: 5) {
-                        Image(systemName: "cup.and.saucer.fill")
-                            .font(.system(size: 9, weight: .semibold))
-                        Text("Auto break: \(viewModel.preferences.breakDurationMinutes)m")
-                            .font(.caption2.weight(.medium))
-                    }
-                    .foregroundStyle(.secondary)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 3.5)
-                    .background(Color.secondary.opacity(0.07), in: Capsule())
-                    .overlay {
-                        Capsule()
-                            .stroke(Color.secondary.opacity(0.10), lineWidth: 1)
-                    }
-                    .help("Auto break: \(viewModel.preferences.breakDurationMinutes)m, Long \(viewModel.preferences.longBreakDurationMinutes)m after \(viewModel.preferences.sessionsBeforeLongBreak) sessions")
-                }
-            }
-
-            HStack(spacing: 8) {
+            HStack(spacing: 6) {
                 ForEach(viewModel.durationPresets, id: \.self) { minutes in
                     Button("\(minutes)m") {
                         viewModel.selectDuration(minutes)
@@ -312,6 +290,19 @@ private struct DurationPickerView: View {
                     viewModel.selectCustomDuration()
                 }
                 .buttonStyle(DurationButtonStyle(isSelected: viewModel.isCustomDurationSelected))
+
+                Button {
+                    viewModel.preferences.pomodoroEnabled.toggle()
+                    viewModel.persistPreferences()
+                } label: {
+                    HStack(spacing: 4) {
+                        Image(systemName: "cup.and.saucer.fill")
+                            .font(.system(size: 10, weight: .medium))
+                        Text(viewModel.preferences.pomodoroEnabled ? "\(viewModel.preferences.breakDurationMinutes)m break" : "Break")
+                    }
+                }
+                .buttonStyle(DurationButtonStyle(isSelected: viewModel.preferences.pomodoroEnabled))
+                .help(viewModel.preferences.pomodoroEnabled ? "Auto break enabled (\(viewModel.preferences.breakDurationMinutes)m)" : "Enable auto break")
             }
 
             if viewModel.isCustomDurationSelected {
