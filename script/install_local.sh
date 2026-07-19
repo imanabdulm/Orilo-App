@@ -69,11 +69,13 @@ pkill -x "$EXECUTABLE_NAME" >/dev/null 2>&1 || true
 echo "Installing to $TARGET_APP..."
 mkdir -p "$INSTALL_DIR"
 rm -rf "$TARGET_APP"
-for old_app in "${OLD_TARGET_APPS[@]}"; do
-  if [[ "$old_app" != "$TARGET_APP" && -e "$old_app" ]]; then
-    rm -rf "$old_app"
-  fi
-done
+if [ ${#OLD_TARGET_APPS[@]} -gt 0 ]; then
+  for old_app in "${OLD_TARGET_APPS[@]}"; do
+    if [[ "$old_app" != "$TARGET_APP" && -e "$old_app" ]]; then
+      rm -rf "$old_app"
+    fi
+  done
+fi
 cp -R "$APP_BUNDLE" "$TARGET_APP"
 find "$TARGET_APP" -exec xattr -c {} \; 2>/dev/null || true
 touch "$TARGET_APP"
