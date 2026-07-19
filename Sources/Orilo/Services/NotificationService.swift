@@ -142,6 +142,7 @@ struct NotificationService {
     }
 
     func scheduleStreakProtectionReminder(streakDays: Int, at hour: Int = 19) async {
+        guard Self.isSupported else { return }
         guard await requestAuthorizationIfNeeded() else { return }
 
         // Cancel any existing streak reminder before scheduling a new one
